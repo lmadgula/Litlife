@@ -1,0 +1,119 @@
+ 
+#dictionary helps us keep track of accounts using usernames and passwords as key-value pairs, and the order of them doesn't matter as much
+ 
+#accounts dictionary used for keeping track of username and their balance
+accounts = {}
+#userandpass dictionary sed for keeping track of persons username and password key value pairs
+userandpass = {}
+ 
+userandpass['JaneSmith'] = 'secret123'
+userandpass['BobSmith'] = 'secret456'
+accounts['JaneSmith'] = 0
+accounts['BobSmith'] = 100
+#While loop reprompts the welcome message as long as either the username or password or both are incorrect, it exits the loop and stops prompting once the username and password both match
+while True:
+ print("Welcome to the bank! Please log in.")
+ user = input("Username:")
+ password = input("Password:")
+ #if the the username and password entered, match a key-value pair in the accountsdictionary, the program prints a welcome message
+ if user in accounts and password == userandpass[user]:
+   while True:
+     useraction = input("Welcome " + user + '! You currently have $' + str(accounts[user])+ " What would you like to do? \n 1. Make a Deposit \n 2. Make a Withdrawl \n 3. Change Your Password \n 4. Logout\n")
+    
+     if useraction == "1":
+       deposit = input("How much money would you like to deposit?")
+       accounts[user] = accounts[user] + int(deposit)
+       print("You have " + str(accounts[user]) + " dollars in your account.\n")
+     elif useraction == "2":
+       withdraw = input("How much money would you like to withdraw?")
+       accounts[user] = accounts[user] - int(withdraw)
+       print("You have " + str(accounts[user]) + " dollars in your account.\n")
+     elif useraction == "3":
+       oldpass = input("to change your password, please type in your old password.")
+       if oldpass == userandpass[user]:
+         newpass= input("Please type in your new password")
+         userandpass[user] = newpass
+         print("Your password has been changed successfully.\n")
+       else:
+         print("Your old password does not match the password in our records.\n")
+     elif useraction == '4':
+       break
+ 
+ 
+ # elif checks if the user entered is in the dictionary, then checks if the password associated with the username matches the one entered, and since it is not, it prints a message
+ elif user in accounts and password != userandpass[user]:
+   print("Your password is incorrect please try again.")
+ # if the username is incorrect, a message is printed and the welcome message is reprompted
+ else:
+   print("We don't recognize your username. Please try again ")
+ 
+# once you break, you need to accept an input (1,2,3,4)
+# if they choose 1, ask "How muhc would you like to deposit? "
+# take the deposit amount as input
+# add this to their balance by adding it to the value of the correct pair in the dictionary -- accounts[username]
+import pysynth
+ 
+morseDict = {"a": ".-", "b": "-...", "c": "-.-.", "d": "-..", "e": ".", "f": "..-.", "g": "--.", "h": "....", "i": "..", "j": ".---", "k": "-.-", "l": ".-..", "m": "--", "n": "-.", "o": "---", "p": ".--.", "q": "--.-", "r": ".-.", "s": "...", "t": "-", "u": "..-", "v": "...-", "w": ".--", "x": "-..-", "y": "-.--", "z": "--.."}
+ 
+# 1. Define a function that takes in a message and converts that message into morse code. (Make sure to put extra spaces inbetween your words.) Using the function, ask the user for a message and print out the translated message.
+ 
+# ask the user for an input
+# pass that input into the fucntion that u design
+# create a loop that iterates through the word using bracket notation to access the letters
+ 
+ 
+ 
+def parseInput(message):
+ morse_mes = ""
+ mess_len = len(message)
+ for i in range(mess_len):
+   if message[i] == " ":
+     morse_mes = morse_mes + "  "
+   else:
+     morse_mes = morse_mes + " " + morseDict[message[i]]
+ return morse_mes
+ 
+ 
+usr_input = input("Enter a message ")
+print(parseInput(usr_input))
+ 
+# initializing the game variables
+word = "halloween"
+wordset = set()
+guesses = 15
+# adding the correct letters to a set
+wordlen = len(word)
+for i in range(wordlen):
+ wordset.add(word[i])
+userset = set()
+ 
+#printing opening message and showing the dashes
+print("Welcome to Hangman! You have 15 guesses to figure out the correct word. Good luck!")
+print("- - - - - - - - -")
+ 
+while guesses > 0:
+ userletter = input()
+ output = ""
+ if userletter in wordset:
+   userset.add(userletter)
+ else:
+   guesses-=1
+ 
+ 
+ # building the output by looping through halloween, and checking if each letter has already been guessed by the user
+ for i in range (wordlen):
+   letter = word[i]
+   #checks whether the letter guessed by the user is in the original word
+    if letter in userset:
+     output = output + letter + " "
+   else:
+     output = output + "- "
+ print("Guess a letter. You have "+ str(guesses) + " guesses remaining!" )
+ print (output)
+ 
+ if len(wordset) == len(userset):
+   print("Congratulations you win!")
+  if guesses == 0:
+   print("You lost, the word was " + word)
+ 
+
