@@ -1,2 +1,2 @@
-# Litlife
+# Educate
 fun projects for education
