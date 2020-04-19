@@ -1,0 +1,26 @@
+import pysynth
+
+morseDict = {"a": ".-", "b": "-...", "c": "-.-.", "d": "-..", "e": ".", "f": "..-.", "g": "--.", "h": "....", "i": "..", "j": ".---", "k": "-.-", "l": ".-..", "m": "--", "n": "-.", "o": "---", "p": ".--.", "q": "--.-", "r": ".-.", "s": "...", "t": "-", "u": "..-", "v": "...-", "w": ".--", "x": "-..-", "y": "-.--", "z": "--.."}
+
+# 1. Define a function that takes in a message and converts that message into morse code. (Make sure to put extra spaces inbetween your words.) Using the function, ask the user for a message and print out the translated message.
+
+# ask the user for an input 
+# pass that input into the fucntion that u design
+# create a loop that iterates through the word using bracket notation to access the letters
+
+
+
+def parseInput(message):
+  morse_mes = ""
+  mess_len = len(message)
+  for i in range(mess_len):
+    if message[i] == " ":
+      morse_mes = morse_mes + "  "
+    else:
+      morse_mes = morse_mes + " " + morseDict[message[i]]
+  return morse_mes
+
+
+usr_input = input("Enter a message ")
+print(parseInput(usr_input))
+
