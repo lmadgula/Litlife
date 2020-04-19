@@ -1,0 +1,33 @@
+import time
+import random
+
+#print("Hello Laasya")
+#time.sleep(5)
+#print("Hello Hannah")
+
+#print(time.time())
+#List of sentences the program randomly chooses to print for the user to type
+sentences = ["Peter Piper picked a peck of pickled peppers", "She sells seashells by the sea shore", "How much wood could a woodchuck chuck if a woodchuck could chuck wood?", "If a dog chews shoes, whose shoes does he choose?", "If you notice this notice, you will notice that this notice is not worth noticing", "I saw Susie sitting in a shoe shine shop"]
+#The time function is used to print the welcome message 
+print("Welcome to type racer. Click enter to play.")
+print("Ready...")
+time.sleep(1)
+print("Set...")
+time.sleep(1)
+print("Type")
+#Prints a random sentence using a random function
+numberSentence = random.randint(0,5) # bug - running it a bunch fo times
+print(sentences[numberSentence])
+#The time when the sentence is printed
+startTime = time.time()
+#Where user types in a copy of the random sentence
+userSentence = input("type:")
+#Prints the amount of time the user took to copy the printed sentence
+endTime = time.time()
+timeTyping = endTime - startTime
+print("You've finished typing in " + str(timeTyping) + " seconds")
+#Compares the users sentence with the original sentence and prints its accuracy
+if (sentences[numberSentence]) == userSentence:
+  print("Your sentence is a 100% accurate")
+else:
+  print("Your sentence is 0% accurate")
