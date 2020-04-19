@@ -1,0 +1,43 @@
+print("Welcome to your To-Do List!\n")
+
+#to do list must be ordered and able to be accessed using indexing
+todolist = list()
+
+#while loop to repeat the prompt and ask for user input 
+while True:
+
+  #Asking what the user would like to do with with the list and taking user input
+  useraction = input("\nWhat would you like to do with your to-do list?\n1. Add a task\n2. Remove a task\n3. Exit\nType in the number here: ")
+
+  #condition for if the user enters 1 which adds task to todo list
+  if useraction == "1":
+    addtask = input("\nPlease type in the task you'd like to add: ")
+    #adds the task user enters to add
+    todolist.append(addtask)
+    listlen = len(todolist)
+    print ("\nHere is your updated list ")
+    for i in range (listlen):
+      print(str(i+1) + ". " + todolist[i])
+
+  #elif condititon for if user enters 2, which removes an item from the todo list    
+  elif useraction == "2":
+    removetask = input("Please type in the number you'd like to remove: ")
+
+    #calculates correct index of task beacuase the index starts with 0, and will always be one less than the number of items in the list
+    index = int(removetask) - 1
+    #checks for invalid cases
+    if int(removetask) > len(todolist):
+      print("the number you have entered is invalid please enter a new one.")
+   
+    else:
+      todolist.remove(todolist[index])
+      print("\nHere is your updated list")
+      for i in range (len(todolist)):
+        print(str(i+1) + ". " + todolist[i] )
+  # follows option number 3, and exits the to-do list
+  elif useraction == '3':
+    break
+  # if the number for the option entered by the user is not applicable, an error message is printed
+  else:
+    print("the number you have entered is invalid please enter a new one.")
+  
