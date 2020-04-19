@@ -1,0 +1,50 @@
+import random
+import time
+
+# reads words into list
+f = open("valid_words.txt")
+validWords = f.readlines()
+validWords = [x.strip() for x in validWords]
+f.close()
+
+# a list of all valid words called validWords 
+
+input("Welcome to Wordsmith! In this game, come up with as many words as you can using the 7 letters you are given. Press Enter to begin!")
+print("Ready....")
+time.sleep(1)
+print("Set....")
+time.sleep(1)
+print("Go!")
+
+# a -> 127
+# b -> 128
+# ..
+# z -> 153
+# ord() converts characters to ascii numbers
+# chr() converts ascii numbers into characters
+points = 0
+words = []
+randomLetters = []
+for i in range(7):
+  randLetter = random.randint(ord('a'),ord('z'))
+  randLetter = chr(randLetter)
+  randomLetters.append(randLetter)
+print("Your random letters are:")
+print(randomLetters)
+while True:
+  wrongLetters = False
+  userWord = input("Enter a word:")
+  for i in userWord:
+    if i not in randomLetters:
+      wrongLetters = True
+  if wrongLetters:
+    print("You can only use the 7 letters given!")
+  else:
+    if userWord in validWords and userWord not in words:
+      points += len(userWord)
+      print("Valid word! Your score: " + str(points))
+      words.append(userWord)
+    elif userWord not in validWords:
+      print("Invalid Word! Your score: "+ str(points))
+    else:
+      print("You already entered this word your score is: " + str(points))
